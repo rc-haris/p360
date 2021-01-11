@@ -1,0 +1,62 @@
+<div class="p360init">
+<isif condition="${product.p360Enabled}">
+${pdict.p360Object.p360Data}
+	<isif condition="${product.P360Images && pdict.p360Object.p360Data}">	
+		<div id="p360">
+			<a href="#" class="autospin">360 Spin</a>
+		</div>
+	</isif>
+</isif>
+</div>
+		
+<div id="pdpCarousel-${product.id}" class="carousel slide" data-interval="0" data-prev="${Resource.msg('button.previous', 'common', null)}" data-next="${Resource.msg('button.next', 'common', null)}">
+	    <isif condition="${product.images['large'].length > 1}">
+	        <ol class="carousel-indicators" aria-hidden="true">
+	            <isloop items="${product.images['large']}" var="image" status="loopStatus">
+	                <li data-target="${"#"}pdpCarousel-${product.id}" data-slide-to="${loopStatus.index}" class='<isif condition="${loopStatus.index == 0}">active</isif>'>
+	                </li>
+	                <isset name="currentIndexSlide" value="${loopStatus.index + 1}" scope="page" />
+	            </isloop>
+	            <isif condition = "${product.images['magic360'][0].url}">
+	            	<li data-target="${"#"}pdpCarousel-${product.id}" data-slide-to="${currentIndexSlide}" class='<isif condition="${currentIndexSlide == 0}">active</isif>'>
+	                </li>
+	             </isif> 
+	        </ol>
+	    </isif>
+	    <div class="carousel-inner" role="listbox">
+	        <isloop items="${product.images['large']}" var="image" status="loopStatus">
+	            <div class='carousel-item <isif condition="${loopStatus.index == 0}">active</isif>'>
+	                <img src="${image.url}" class="d-block img-fluid" alt="${image.alt} image number ${image.index}" itemprop="image" />
+	            </div>
+	            <isset name="currentIndexImg" value="${loopStatus.index + 1}" scope="page" />
+	        </isloop>
+	        <isif condition = "${product.images['magic360'][0].url}">
+	        <div class='carousel-item <isif condition="${loopStatus.index == 0}">active</isif>'>
+		        <div class="app-figure" id="zoom-fig">
+					<isif condition="${product.magic360_rows != null && product.magic360_columns >= 1}">
+						<a class="Magic360" data-options="filename:${product.magic360_filename};rows: ${product.magic360_rows}; columns: ${product.magic360_columns};"><img id="magic360" class="d-block img-fluid" src="${product.images['magic360'][0].url}" alt="magic360 image number ${currentIndexImg}" itemprop="${product.images['magic360'][0]}"/></a>
+					<iselse>
+						<a class="Magic360" data-options="filename:${product.magic360_filename}; columns: ${product.magic360_columns};"><img id="magic360" src="${product.images['magic360'][0].url}" alt="magic360 image number ${currentIndexImg}" itemprop="${product.images['magic360'][0]}"/></a>
+					</isif>
+					<button class="m360-icon m360-icon-fullscreen-open"></button>
+				</div>
+			</div>
+			</isif>
+	    </div>
+	    <isif condition="${product.images['large'].length > 1}">
+	        <a class="carousel-control-prev" href="${"#"}pdpCarousel-${product.id}" role="button" data-slide="prev">
+	            <span class="fa icon-prev" aria-hidden="true"></span>
+	            <span class="sr-only">${Resource.msg('button.previous', 'common', null)}</span>
+	        </a>
+	        <a class="carousel-control-next" href="${"#"}pdpCarousel-${product.id}" role="button" data-slide="next">
+	            <span class="fa icon-next" aria-hidden="true"></span>
+	            <span class="sr-only">${Resource.msg('button.next', 'common', null)}</span>
+	        </a>
+	    </isif>
+</div>
+<script defer type="text/javascript" src="${URLUtils.staticURL('/js/p360.js')}"></script>
+<script>pref = <isprint value="${pdict.p360Object.pref}" encoding="off"/>;</script>
+<script type="text/javascript"> var imageDir = "<isprint encoding="jsblock" value="${product.basePath} "/>";</script>
+<script type="text/javascript"> var length = "<isprint value="${pdict.p360Object.P360Images['p360'].length} "/>";</script>
+<script  defer type="text/javascript" src="${URLUtils.staticURL('/js/p360init.js')}"></script>
+<link rel="stylesheet" type="text/css" href="${URLUtils.staticURL('/css/p360.css')}"/>

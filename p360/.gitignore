@@ -1,0 +1,5 @@
+node_modules/
+cartridges/app_p360/cartridge/static/default/css/
+cartridges/app_p360/cartridge/static/default/js/
+cartridges/app_p360/cartridge/static/default/fonts/
+dw.json
