@@ -1,14 +1,3 @@
-<div class="p360init">
-<isif condition="${product.p360Enabled}">
-${pdict.p360Object.p360Data}
-	<isif condition="${product.P360Images && pdict.p360Object.p360Data}">	
-		<div id="p360">
-			<a href="#" class="autospin">360 Spin</a>
-		</div>
-	</isif>
-</isif>
-</div>
-		
 <div id="pdpCarousel-${product.id}" class="carousel slide" data-interval="0" data-prev="${Resource.msg('button.previous', 'common', null)}" data-next="${Resource.msg('button.next', 'common', null)}">
 	    <isif condition="${product.images['large'].length > 1}">
 	        <ol class="carousel-indicators" aria-hidden="true">
@@ -24,8 +13,25 @@ ${pdict.p360Object.p360Data}
 	        </ol>
 	    </isif>
 	    <div class="carousel-inner" role="listbox">
+			<div class='carousel-item active'>
+				<div class="p360init">
+					<isif condition="${product.p360Enabled}">
+					${pdict.p360Object.p360Data}
+						<isif condition="${product.P360Images && pdict.p360Object.p360Data}">	
+							<div id="p360">
+								<a href="#" class="autospin">360 Spin</a>
+								<ul class="rotate-links">
+									<li><a href="#" class="rotate-left"></a></li>
+									<li><a href="#" class="rotate-right"></a></li>
+									<li><a href="#" class="zoom"></a></li>
+								</ul>
+							</div>
+						</isif>
+					</isif>
+				</div>
+			</div>
 	        <isloop items="${product.images['large']}" var="image" status="loopStatus">
-	            <div class='carousel-item <isif condition="${loopStatus.index == 0}">active</isif>'>
+	            <div class='carousel-item'>
 	                <img src="${image.url}" class="d-block img-fluid" alt="${image.alt} image number ${image.index}" itemprop="image" />
 	            </div>
 	            <isset name="currentIndexImg" value="${loopStatus.index + 1}" scope="page" />

@@ -16,7 +16,7 @@ $(document).ready(function () {
 				p360Data = true;
 				
 				var carousel = '<div id="p360">'
-					+'<a href="#" class="autospin">360 Spin</a>'
+					+'<a href="#" class="autospin"></a>'
 					+'</div>';
 				container.find('.p360init').empty().html(carousel);
 			}

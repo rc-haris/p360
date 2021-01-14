@@ -140,11 +140,11 @@ view360.find("#"+options.canvasID).mousedown(function(e){ //  mousedown event
 		e.preventDefault();
 if(options.autoRotate==false){
 start_auto_rotate();
-$(this).text("Stop 360 Spin");
+$(this).addClass("active");
 }
 else{
 stop_auto_rotate();
-$(this).text("360 Spin");
+$(this).removeClass("active");
 }
 });
 
